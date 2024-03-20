@@ -73,3 +73,4 @@ set_property PACKAGE_PIN AB28 [get_ports qsfp1_clk_clk_n]
 #set_property -dict {PACKAGE_PIN AJ26  IOSTANDARD LVCMOS18}  [get_ports QSFP_IIC_sda_io]
 
 
+set_property CONFIG_MODE SPIx4 [current_design]

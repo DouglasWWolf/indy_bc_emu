@@ -1,5 +1,5 @@
 dest=bitstream
-base=indy_bc_emu_
+base=indy_bc_emu
 
 mkdir $dest 2>/dev/null
 

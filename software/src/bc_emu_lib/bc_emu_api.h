@@ -64,6 +64,11 @@ public:
     static const uint32_t REG_BYTES_PER_USEC    = SC_BASE + 12 * 4;
     static const uint32_t REG_METADATA          = SC_BASE + 16 * 4;
 
+    // Registers related to the ABM data-mover
+    static const uint32_t DM_BASE = 0x4000;
+    static const uint32_t REG_ABM_HOST_ADDR_H   = DM_BASE + 0 * 4;
+    static const uint32_t REG_ABM_HOST_ADDR_L   = DM_BASE + 1 * 4;
+
 protected:
 
     // The userspace address of the FPGA's BAR 0

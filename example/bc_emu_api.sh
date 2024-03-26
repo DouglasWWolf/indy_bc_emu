@@ -37,6 +37,9 @@ REG_PACKETS_PER_GROUP=$((MC_BASE + 12* 4))
 REG_BYTES_PER_USEC=$((0x3000 + 12*4))
       REG_METADATA=$((0x3000 + 16*4))
 
+REG_ABM_HOST_ADDR_H=$((0x4000 + 0*4))
+REG_ABM_HOST_ADDR_L=$((0x4000 + 1*4))     
+
 #==============================================================================
 
 
@@ -249,6 +252,17 @@ set_frame_counter_addr()
 {
     pcireg $REG_RFC_ADDR_H $(upper32 $1)
     pcireg $REG_RFC_ADDR_L $(lower32 $1)        
+}
+#==============================================================================
+
+
+#==============================================================================
+# This configures the address where the ABM gets written
+#==============================================================================
+set_abm_addr()
+{
+    pcireg $REG_ABM_HOST_ADDR_H $(upper32 $1)
+    pcireg $REG_ABM_HOST_ADDR_L $(lower32 $1)
 }
 #==============================================================================
 

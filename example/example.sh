@@ -52,6 +52,9 @@ fi
 # Make sure the system is idle
 idle_system
 
+# This is the location in host RAM where the ABM will be stored
+set_abm_addr 0x1_0000_0000
+
 # Set the output data rate in bytes-per-microsecond. 
 set_rate_limit 12288
 

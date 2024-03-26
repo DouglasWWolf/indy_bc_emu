@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbc_emu.a  CMakeFiles/bc_emu.dir/src/bc_emu_lib/PciDevice.cpp.o CMakeFiles/bc_emu.dir/src/bc_emu_lib/bc_emu_api.cpp.o
+/usr/bin/ranlib libbc_emu.a

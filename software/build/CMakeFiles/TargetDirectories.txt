@@ -1,4 +1,0 @@
-/fpga/indy_bc_emu/software/build/CMakeFiles/rebuild_cache.dir
-/fpga/indy_bc_emu/software/build/CMakeFiles/edit_cache.dir
-/fpga/indy_bc_emu/software/build/CMakeFiles/bc_emu_test.dir
-/fpga/indy_bc_emu/software/build/CMakeFiles/bc_emu.dir

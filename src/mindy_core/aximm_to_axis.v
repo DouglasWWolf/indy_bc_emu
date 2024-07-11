@@ -123,7 +123,7 @@ assign S_AXI_BRESP = 0;
 reg[15:0] bursts_rcvd, bursts_ackd;
 
 // BVALID is asserted while we have acknowledgemts we still need to send
-assign S_AXI_BVALID = (bursts_ackd != bursts_rcvd);
+assign S_AXI_BVALID = (resetn == 1) & (bursts_ackd != bursts_rcvd);
 
 // Count the number of bursts we receive.  That's how many acks we need to send
 always @(posedge clk) begin

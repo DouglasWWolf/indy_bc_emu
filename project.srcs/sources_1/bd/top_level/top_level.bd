@@ -63,8 +63,8 @@
         "abm_manager": {
           "abm_loader_0": "",
           "abm_loader_1": "",
-          "abm_manager_if": "",
           "abm_notifier": "",
+          "abm_manager_if": "",
           "muxed_sdp_ram_if_0": "",
           "muxed_sdp_ram_if_1": ""
         },
@@ -9421,6 +9421,66 @@
                   }
                 }
               },
+              "abm_notifier": {
+                "vlnv": "xilinx.com:module_ref:abm_notifier:1.0",
+                "xci_name": "top_level_abm_notifier_0_0",
+                "xci_path": "ip/top_level_abm_notifier_0_0/top_level_abm_notifier_0_0.xci",
+                "inst_hier_path": "abm_manager/abm_manager/abm_notifier",
+                "reference_info": {
+                  "ref_type": "hdl",
+                  "ref_name": "abm_notifier",
+                  "boundary_crc": "0x0"
+                },
+                "ports": {
+                  "clk": {
+                    "type": "clk",
+                    "direction": "I",
+                    "parameters": {
+                      "ASSOCIATED_RESET": {
+                        "value": "resetn",
+                        "value_src": "constant"
+                      },
+                      "FREQ_HZ": {
+                        "value": "250000000",
+                        "value_src": "user_prop"
+                      },
+                      "CLK_DOMAIN": {
+                        "value": "top_level_xdma_0_0_axi_aclk",
+                        "value_src": "default_prop"
+                      }
+                    }
+                  },
+                  "resetn": {
+                    "type": "rst",
+                    "direction": "I",
+                    "parameters": {
+                      "POLARITY": {
+                        "value": "ACTIVE_LOW",
+                        "value_src": "constant"
+                      }
+                    }
+                  },
+                  "abm0_updated": {
+                    "direction": "I"
+                  },
+                  "abm1_updated": {
+                    "direction": "I"
+                  },
+                  "abm0_counter": {
+                    "direction": "O",
+                    "left": "31",
+                    "right": "0"
+                  },
+                  "abm1_counter": {
+                    "direction": "O",
+                    "left": "31",
+                    "right": "0"
+                  },
+                  "abm_ready": {
+                    "direction": "O"
+                  }
+                }
+              },
               "abm_manager_if": {
                 "vlnv": "xilinx.com:module_ref:abm_manager_if:1.0",
                 "xci_name": "top_level_abm_manager_if_0_0",
@@ -9765,66 +9825,6 @@
                     "direction": "I",
                     "left": "511",
                     "right": "0"
-                  }
-                }
-              },
-              "abm_notifier": {
-                "vlnv": "xilinx.com:module_ref:abm_notifier:1.0",
-                "xci_name": "top_level_abm_notifier_0_0",
-                "xci_path": "ip/top_level_abm_notifier_0_0/top_level_abm_notifier_0_0.xci",
-                "inst_hier_path": "abm_manager/abm_manager/abm_notifier",
-                "reference_info": {
-                  "ref_type": "hdl",
-                  "ref_name": "abm_notifier",
-                  "boundary_crc": "0x0"
-                },
-                "ports": {
-                  "clk": {
-                    "type": "clk",
-                    "direction": "I",
-                    "parameters": {
-                      "ASSOCIATED_RESET": {
-                        "value": "resetn",
-                        "value_src": "constant"
-                      },
-                      "FREQ_HZ": {
-                        "value": "250000000",
-                        "value_src": "user_prop"
-                      },
-                      "CLK_DOMAIN": {
-                        "value": "top_level_xdma_0_0_axi_aclk",
-                        "value_src": "default_prop"
-                      }
-                    }
-                  },
-                  "resetn": {
-                    "type": "rst",
-                    "direction": "I",
-                    "parameters": {
-                      "POLARITY": {
-                        "value": "ACTIVE_LOW",
-                        "value_src": "constant"
-                      }
-                    }
-                  },
-                  "abm0_updated": {
-                    "direction": "I"
-                  },
-                  "abm1_updated": {
-                    "direction": "I"
-                  },
-                  "abm0_counter": {
-                    "direction": "O",
-                    "left": "31",
-                    "right": "0"
-                  },
-                  "abm1_counter": {
-                    "direction": "O",
-                    "left": "31",
-                    "right": "0"
-                  },
-                  "abm_ready": {
-                    "direction": "O"
                   }
                 }
               },
@@ -11194,8 +11194,8 @@
                   "clk",
                   "abm_loader_0/clk",
                   "abm_loader_1/clk",
-                  "abm_manager_if/clk",
                   "abm_notifier/clk",
+                  "abm_manager_if/clk",
                   "muxed_sdp_ram_if_0/clk",
                   "muxed_sdp_ram_if_1/clk"
                 ]
@@ -11255,8 +11255,8 @@
                   "resetn",
                   "abm_loader_0/resetn",
                   "abm_loader_1/resetn",
-                  "abm_manager_if/resetn",
                   "abm_notifier/resetn",
+                  "abm_manager_if/resetn",
                   "muxed_sdp_ram_if_0/resetn",
                   "muxed_sdp_ram_if_1/resetn"
                 ]

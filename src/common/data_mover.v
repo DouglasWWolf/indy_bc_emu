@@ -6,6 +6,10 @@
 //====================================================================================
 // 22-Mar-24  DWW     1  Initial creation
 // 18-Jun-24  DWW     2  Made much more generic
+// 12-Jul-24  DWW     3  Now assigning unused signals to 0
+// 15-Jul-24  DWW     4  Added ARSIZE to the AXI interface definitions
+//                       Now assigning values to AxID, AxCACHE, AxPROT, and AxQOS
+// 17-Jul-24  DWW     5  Now de-asserting DST_AXI_WVALID & SRC_AXI_WREADY in reset
 //====================================================================================
 
 /*
@@ -57,6 +61,7 @@ module data_mover # (parameter DW = 512, parameter AW = 64)
     output     [2:0]                        SRC_AXI_ARPROT,
     output                                  SRC_AXI_ARLOCK,
     output     [3:0]                        SRC_AXI_ARID,
+    output     [2:0]                        SRC_AXI_ARSIZE,
     output     [7:0]                        SRC_AXI_ARLEN,
     output     [1:0]                        SRC_AXI_ARBURST,
     output     [3:0]                        SRC_AXI_ARCACHE,
@@ -105,6 +110,7 @@ module data_mover # (parameter DW = 512, parameter AW = 64)
     output[2:0]                             DST_AXI_ARPROT,
     output                                  DST_AXI_ARLOCK,
     output[3:0]                             DST_AXI_ARID,
+    output[2:0]                             DST_AXI_ARSIZE,
     output[7:0]                             DST_AXI_ARLEN,
     output[1:0]                             DST_AXI_ARBURST,
     output[3:0]                             DST_AXI_ARCACHE,
@@ -151,7 +157,7 @@ reg[1:0] wsm_state;   // W_channel  of DST_AXI
 reg[31:0] ar_count, aw_count, w_count;
 
 // We're always ready to receive write-acknowledgements
-assign DST_AXI_BREADY = 1;
+assign DST_AXI_BREADY = (resetn == 1);
 
 // The number of writes requested, and the number of writes acknowledged
 reg[31:0] writes_reqd, writes_ackd;
@@ -159,7 +165,13 @@ reg[31:0] writes_reqd, writes_ackd;
 //=============================================================================
 // This block sends read-requests to the SRC_AXI interace
 //=============================================================================
-assign SRC_AXI_ARBURST = 1;
+assign SRC_AXI_ARID    = 0;
+assign SRC_AXI_ARLOCK  = 0;
+assign SRC_AXI_ARQOS   = 0;
+assign SRC_AXI_ARSIZE  = $clog2(DW/8);
+assign SRC_AXI_ARCACHE = 2; /* Modifiable */
+assign SRC_AXI_ARPROT  = 2; /* Privileged */
+assign SRC_AXI_ARBURST = 1; /* Incr Burst */
 assign SRC_AXI_ARLEN   = CYCLES_PER_BURST - 1 ;
 assign SRC_AXI_ARVALID = (resetn == 1 && arsm_state == 1);
 //-----------------------------------------------------------------------------
@@ -192,7 +204,13 @@ end
 //=============================================================================
 // This block sends write-requests to the DST_AXI interace
 //=============================================================================
-assign DST_AXI_AWBURST = 1;
+assign DST_AXI_AWID    = 0;
+assign DST_AXI_AWLOCK  = 0;
+assign DST_AXI_AWQOS   = 0;
+assign DST_AXI_AWSIZE  = $clog2(DW/8);
+assign DST_AXI_AWCACHE = 2; /* Modifiable */
+assign DST_AXI_AWPROT  = 2; /* Privileged */
+assign DST_AXI_AWBURST = 1; /* Incr Burst */
 assign DST_AXI_AWLEN   = CYCLES_PER_BURST - 1 ;
 assign DST_AXI_AWSIZE  = $clog2(DW/8);
 assign DST_AXI_AWVALID = (resetn == 1 && awsm_state == 1);
@@ -231,8 +249,8 @@ end
 assign DST_AXI_WDATA  = SRC_AXI_RDATA;
 assign DST_AXI_WSTRB  = -1;
 assign DST_AXI_WLAST  = SRC_AXI_RLAST;
-assign DST_AXI_WVALID = SRC_AXI_RVALID & (wsm_state == 1);
-assign SRC_AXI_RREADY = DST_AXI_WREADY & (wsm_state == 1);
+assign DST_AXI_WVALID = SRC_AXI_RVALID & (wsm_state == 1) & (resetn == 1);
+assign SRC_AXI_RREADY = DST_AXI_WREADY & (wsm_state == 1) & (resetn == 1);
 //============================================================================
 
 
@@ -252,7 +270,7 @@ always @(posedge clk) begin
                 wsm_state <= 1;
             end
 
-        // Every time a burst completes, count it
+        // Every time a burst completes, count it44A0
         1:  if (DST_AXI_WREADY & DST_AXI_WVALID & DST_AXI_WLAST) begin
                 if (w_count == BURSTS_PER_MOVE)
                     wsm_state <= 2;
@@ -296,7 +314,45 @@ end
 //============================================================================
 
 
+//============================================================================
+// unused signals
+//============================================================================
 
+// AW-chanel of SRC_AXI
+assign SRC_AXI_AWADDR  = 0;
+assign SRC_AXI_AWVALID = 0;
+assign SRC_AXI_AWLEN   = 0;
+assign SRC_AXI_AWSIZE  = 0;
+assign SRC_AXI_AWID    = 0;
+assign SRC_AXI_AWBURST = 0;
+assign SRC_AXI_AWLOCK  = 0;
+assign SRC_AXI_AWCACHE = 0;
+assign SRC_AXI_AWQOS   = 0;
+assign SRC_AXI_AWPROT  = 0;
 
+// W-channel of SRC_AXI
+assign SRC_AXI_WDATA   = 0; 
+assign SRC_AXI_WSTRB   = 0;
+assign SRC_AXI_WVALID  = 0;
+assign SRC_AXI_WLAST   = 0;
+
+// B-channel of SRC_AXI
+assign SRC_AXI_BREADY  = 0;
+
+// AR-channel of DST_AXI
+assign DST_AXI_ARADDR  = 0;
+assign DST_AXI_ARVALID = 0;
+assign DST_AXI_ARPROT  = 0;
+assign DST_AXI_ARLOCK  = 0;
+assign DST_AXI_ARID    = 0;
+assign DST_AXI_ARSIZE  = 0;
+assign DST_AXI_ARLEN   = 0;
+assign DST_AXI_ARBURST = 0;
+assign DST_AXI_ARCACHE = 0;
+assign DST_AXI_ARQOS   = 0;
+
+// R-channel of DST_AXI
+assign DST_AXI_RREADY  = 0;
+//============================================================================
 
 endmodule

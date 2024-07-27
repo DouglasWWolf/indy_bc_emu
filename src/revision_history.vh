@@ -52,14 +52,24 @@
 // 19-Jun-2024  1.14.0 DWW  Upgraded to the new abm-manager to load ABM from host-RAM
 //
 // 20-Jun-2024  1.15.0 DWW  Added registers that count the number of ABMs received
+//
+// 23-Jul-2024  1.18.0 DWW  abm-manager logic now includes data-mover to host-RAM.
+//
+//                          Fixes to the "data_mover" module to drive ARSIZE, ARCACHE, ARPROT, 
+//                          and ARID.
+//
+//                          Minor changes to abm_manager (sdp_ram.v) to satisfy Cadence
+//
+//                          Minor change to bring "abm_mover" module outside of the "abm_manager"
+//                          heirarchy.   
 //================================================================================================
 localparam VERSION_MAJOR = 1;
-localparam VERSION_MINOR = 15;
+localparam VERSION_MINOR = 18;
 localparam VERSION_BUILD = 0;
 localparam VERSION_RCAND = 0;
 
-localparam VERSION_DAY   = 20;
-localparam VERSION_MONTH = 6;
+localparam VERSION_DAY   = 24;
+localparam VERSION_MONTH = 7;
 localparam VERSION_YEAR  = 2024;
 
 localparam RTL_TYPE      = 912018;

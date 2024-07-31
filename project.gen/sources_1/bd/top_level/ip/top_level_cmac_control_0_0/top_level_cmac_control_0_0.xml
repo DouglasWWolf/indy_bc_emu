@@ -523,6 +523,18 @@
           </spirit:wireTypeDefs>
         </spirit:wire>
       </spirit:port>
+      <spirit:port>
+        <spirit:name>sys_reset_out</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>dummy_view</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
@@ -539,6 +551,11 @@
         <spirit:name>TX_DIFF</spirit:name>
         <spirit:displayName>Tx Diff</spirit:displayName>
         <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.TX_DIFF" spirit:bitStringLength="5">&quot;11000&quot;</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>USE_SYS_RESET_OUT</spirit:name>
+        <spirit:displayName>Use Sys Reset Out</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.USE_SYS_RESET_OUT">0</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
@@ -558,6 +575,11 @@
       <spirit:name>TX_DIFF</spirit:name>
       <spirit:displayName>Tx Diff</spirit:displayName>
       <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.TX_DIFF" spirit:bitStringLength="5">&quot;11000&quot;</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>USE_SYS_RESET_OUT</spirit:name>
+      <spirit:displayName>Use Sys Reset Out</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.USE_SYS_RESET_OUT">0</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>

@@ -44,8 +44,8 @@
         },
         "eth_0": {
           "axis_register_slice": "",
-          "cmac_control": "",
-          "cmac": ""
+          "cmac": "",
+          "cmac_control": ""
         },
         "rdmx_0": {
           "axis_data_cdc": "",
@@ -5661,6 +5661,9 @@
                   },
                   "sync_rx_aligned": {
                     "direction": "O"
+                  },
+                  "sys_reset_out": {
+                    "direction": "O"
                   }
                 }
               }
@@ -5738,6 +5741,12 @@
                 "ports": [
                   "cmac_control/sync_rx_aligned",
                   "aligned"
+                ]
+              },
+              "cmac_control_sys_reset_out": {
+                "ports": [
+                  "cmac_control/sys_reset_out",
+                  "cmac/sys_reset"
                 ]
               },
               "cmac_gt_rxusrclk2": {
@@ -5822,6 +5831,47 @@
                 "xci_name": "top_level_axis_register_slice_0_2",
                 "xci_path": "ip/top_level_axis_register_slice_0_2/top_level_axis_register_slice_0_2.xci",
                 "inst_hier_path": "ethernet/eth_0/axis_register_slice"
+              },
+              "cmac": {
+                "vlnv": "xilinx.com:ip:cmac_usplus:3.1",
+                "xci_name": "top_level_cmac_usplus_0_0",
+                "xci_path": "ip/top_level_cmac_usplus_0_0/top_level_cmac_usplus_0_0.xci",
+                "inst_hier_path": "ethernet/eth_0/cmac",
+                "parameters": {
+                  "ADD_GT_CNRL_STS_PORTS": {
+                    "value": "1"
+                  },
+                  "CMAC_CAUI4_MODE": {
+                    "value": "1"
+                  },
+                  "CMAC_CORE_SELECT": {
+                    "value": "CMACE4_X0Y0"
+                  },
+                  "GT_DRP_CLK": {
+                    "value": "200"
+                  },
+                  "GT_GROUP_SELECT": {
+                    "value": "X0Y0~X0Y3"
+                  },
+                  "GT_REF_CLK_FREQ": {
+                    "value": "322.265625"
+                  },
+                  "INCLUDE_RS_FEC": {
+                    "value": "1"
+                  },
+                  "NUM_LANES": {
+                    "value": "4x25"
+                  },
+                  "RX_FLOW_CONTROL": {
+                    "value": "0"
+                  },
+                  "TX_FLOW_CONTROL": {
+                    "value": "0"
+                  },
+                  "USER_INTERFACE": {
+                    "value": "AXIS"
+                  }
+                }
               },
               "cmac_control": {
                 "vlnv": "xilinx.com:module_ref:cmac_control:1.0",
@@ -5980,47 +6030,9 @@
                   },
                   "sync_rx_aligned": {
                     "direction": "O"
-                  }
-                }
-              },
-              "cmac": {
-                "vlnv": "xilinx.com:ip:cmac_usplus:3.1",
-                "xci_name": "top_level_cmac_usplus_0_0",
-                "xci_path": "ip/top_level_cmac_usplus_0_0/top_level_cmac_usplus_0_0.xci",
-                "inst_hier_path": "ethernet/eth_0/cmac",
-                "parameters": {
-                  "ADD_GT_CNRL_STS_PORTS": {
-                    "value": "1"
                   },
-                  "CMAC_CAUI4_MODE": {
-                    "value": "1"
-                  },
-                  "CMAC_CORE_SELECT": {
-                    "value": "CMACE4_X0Y0"
-                  },
-                  "GT_DRP_CLK": {
-                    "value": "200"
-                  },
-                  "GT_GROUP_SELECT": {
-                    "value": "X0Y0~X0Y3"
-                  },
-                  "GT_REF_CLK_FREQ": {
-                    "value": "322.265625"
-                  },
-                  "INCLUDE_RS_FEC": {
-                    "value": "1"
-                  },
-                  "NUM_LANES": {
-                    "value": "4x25"
-                  },
-                  "RX_FLOW_CONTROL": {
-                    "value": "0"
-                  },
-                  "TX_FLOW_CONTROL": {
-                    "value": "0"
-                  },
-                  "USER_INTERFACE": {
-                    "value": "AXIS"
+                  "sys_reset_out": {
+                    "direction": "O"
                   }
                 }
               }
@@ -6100,13 +6112,19 @@
                   "aligned"
                 ]
               },
+              "cmac_control_sys_reset_out": {
+                "ports": [
+                  "cmac_control/sys_reset_out",
+                  "cmac/sys_reset"
+                ]
+              },
               "cmac_gt_rxusrclk2": {
                 "ports": [
                   "cmac/gt_txusrclk2",
                   "stream_clk",
                   "axis_register_slice/aclk",
-                  "cmac_control/rx_clk",
-                  "cmac/rx_clk"
+                  "cmac/rx_clk",
+                  "cmac_control/rx_clk"
                 ]
               },
               "init_clk_0_1": {

@@ -251,7 +251,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>fc4f1e77</spirit:value>
+            <spirit:value>d46d6b35</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -264,7 +264,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>fc4f1e77</spirit:value>
+            <spirit:value>d46d6b35</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -494,6 +494,19 @@
           </spirit:wireTypeDefs>
         </spirit:wire>
       </spirit:port>
+      <spirit:port>
+        <spirit:name>sys_reset_out</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
@@ -511,6 +524,11 @@
         <spirit:displayName>Tx Diff</spirit:displayName>
         <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.TX_DIFF" spirit:bitStringLength="5">&quot;11000&quot;</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>USE_SYS_RESET_OUT</spirit:name>
+        <spirit:displayName>Use Sys Reset Out</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.USE_SYS_RESET_OUT">0</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:fileSets>
@@ -519,7 +537,7 @@
       <spirit:file>
         <spirit:name>xgui/cmac_control_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_5893fd74</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_24a6d30c</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -542,6 +560,11 @@
       <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.TX_DIFF" spirit:bitStringLength="5">&quot;11000&quot;</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
+      <spirit:name>USE_SYS_RESET_OUT</spirit:name>
+      <spirit:displayName>Use Sys Reset Out</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.USE_SYS_RESET_OUT">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">cmac_control_v1_0</spirit:value>
     </spirit:parameter>
@@ -561,7 +584,7 @@
         <xilinx:designToolContext>IPI</xilinx:designToolContext>
       </xilinx:designToolContexts>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-07-27T11:06:38Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2024-07-31T21:14:26Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2021.1</xilinx:xilinxVersion>

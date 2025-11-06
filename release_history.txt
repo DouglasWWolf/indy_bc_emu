@@ -1,0 +1,76 @@
+================================================================================================
+    Vers    Date     Who  Changes
+ -----------------------------------------------------------------------------------------------
+  1.0.0  16-Mar-24  DWW  Initial creation
+                                        
+  1.1.0  25-Mar-24  DWW  Added abm-manager
+                                    
+  1.2.0  02-Apr-24  DWW  Added discrete "continuous" and "one-shot" output modes
+                                     
+  1.3.0  11-Apr-24  DWW  Changed one-shot mode to N-shot mode
+                                  
+  1.4.0  26-Apr-24  DWW  Upgrade cmac_control.v to support sys_reset_in.
+                                       
+                         Separated the CMAC clocks to make the CMAC clocking independent
+                         of each other
+                                       
+                         No behavioral changes
+                                          
+  1.5.0  28-Apr-24  DWW  Added support for RTL_TYPE and RTL_SUBTYPE
+                                                         
+  1.5.1  30-Apr-24  DWW  Removed extraneous reset control logic from CMACs
+                         Added an ILA that monitors mindy-core outputs 
+                         No behavioral changes
+                                              
+  1.6.0  02-May-24  DWW  Fixed bug in the reset logic that feeds mindy.
+                                           
+                         Removed the "mindy_core_reset.v" module and mindy-core reset domain
+                         is now controled from "resetn_out" of simframe_ctl.v
+                                       
+  1.7.0  04-May-24  DWW  Just a version number change    
+                                        
+  1.8.0  04-May-24  DWW  Fixed bug where rdmx_fe.v could attempt to write to the address FIFO 
+                         before it was out of reset.     Added "addr_fifo_debug" signal that
+                         will go high on any clock cycle where data is ready to be written
+                         into the address FIFO, but the address FIFO isn't ready to receive
+                         it yet.  (Usually because it hasn't come out of reset yet)             
+                                        
+  1.9.0  09-May-24  DWW  Added RDMX sequence number to mindy-core's "rdmx_xmit_be.v"
+                         New cmac_control.v to manage CMAC's gtwiz_reset_rx_path
+                         No longer resetting CMAC's sys_reset pin
+                         Numerous small mindy-core changes to fix reset handling
+                                     
+  1.10.0 21-May-24  DWW  Added support for outputting sensor-chip header
+                                    
+  1.11.0 22-May-24  DWW  Added support for outputting sensor-chip footer
+                                  
+  1.12.0 23-May-24  DWW  Now providing register access to mindy-core frame counters
+                                     
+  1.13.0 16-Jun-24  DWW  Upgraded to new cmac_control to set gt_txdiffctrl on CMAC
+                                        
+  1.14.0 19-Jun-24  DWW  Upgraded to the new abm-manager to load ABM from host-RAM
+                                  
+  1.15.0 20-Jun-24  DWW  Added registers that count the number of ABMs received
+                                    
+  1.16.0 12-Jul-24  DWW  abm-manager logic now includes data-mover to host-RAM
+                                    
+  1.17.0 15-Jul-24  DWW  Fixes to the "data_mover" module to drive ARSIZE, ARCACHE, ARPROT, 
+                         and ARID.
+                                     
+  1.17.1 17-Jul-24  DWW  Minor changes to abm_manager to satisfy Cadence
+                                       
+  1.18.0 26-Jul-24  DWW  Minor change to bring "abm_mover" module outside of the 
+                         "abm_manager" heirarchy.   
+                                    
+  1.19.0 17-Oct-24  DWW  Added cmac_bp_monitor (CMAC backpressure monitor)
+                                      
+  1.20.0 20-Oct-24  DWW  Added packet counters on the CMAC TX and RX interfaces
+                                     
+  1.21.0 05-Nov-24  DWW  Added frame-number to the RDMX header
+                                
+  1.22.0 18-Jun-25  DWW  Updated mindy-core to support the new RDMX "memfence" feature
+                         Now setting the memfence bit on outgoing frame-counter packets
+
+  1.23.0 06-Jul-25  DWW  Further integration with build system.  No behavioral changes.
+================================================================================================
+

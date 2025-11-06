@@ -1,0 +1,115 @@
+
+set_property CONFIG_MODE SPIx4 [current_design]
+set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
+
+
+#===============================================================================
+#                            Clocks & system signals
+#===============================================================================
+
+#
+# 200 Mhz clock
+#
+set_property -dict {PACKAGE_PIN G17  IOSTANDARD LVCMOS18} [get_ports init_clk]
+create_clock -period 5.000 -name sysclk200                [get_ports init_clk]
+set_clock_groups -name group_sysclk200 -asynchronous -group [get_clocks sysclk200]
+
+
+#
+# PCIe endpoint refclk
+#
+set_property -dict {PACKAGE_PIN U29}          [get_ports pcie_refclk_clk_p]
+set_property -dict {PACKAGE_PIN U30}          [get_ports pcie_refclk_clk_n]  
+create_clock -period 10.000 -name pcie_sysclk [get_ports pcie_refclk_clk_p]
+set_clock_groups -name group_pcie_sysclk -asynchronous -group [get_clocks pcie_sysclk]
+
+
+#
+# LEDs
+#
+#set_property -dict {PACKAGE_PIN AW26  IOSTANDARD LVCMOS18} [ get_ports LED[0] ]
+#set_property -dict {PACKAGE_PIN AW23  IOSTANDARD LVCMOS18} [ get_ports LED[1] ]
+#set_property -dict {PACKAGE_PIN AW25  IOSTANDARD LVCMOS18} [ get_ports LED[2] ]
+#set_property -dict {PACKAGE_PIN AU23  IOSTANDARD LVCMOS18} [ get_ports LED[3] ]
+#set_property -dict {PACKAGE_PIN AU25  IOSTANDARD LVCMOS18} [ get_ports LED[4] ]
+#set_property -dict {PACKAGE_PIN AV23  IOSTANDARD LVCMOS18} [ get_ports LED[5] ]
+#set_property -dict {PACKAGE_PIN AW24  IOSTANDARD LVCMOS18} [ get_ports LED[6] ]
+#set_property -dict {PACKAGE_PIN AV25  IOSTANDARD LVCMOS18} [ get_ports LED[7] ]
+
+
+set_property -dict {PACKAGE_PIN AU25  IOSTANDARD LVCMOS18} [ get_ports led_green[3] ]
+set_property -dict {PACKAGE_PIN AV23  IOSTANDARD LVCMOS18} [ get_ports led_green[2] ]
+set_property -dict {PACKAGE_PIN AW24  IOSTANDARD LVCMOS18} [ get_ports led_green[1] ]
+set_property -dict {PACKAGE_PIN AV25  IOSTANDARD LVCMOS18} [ get_ports led_green[0] ]
+
+
+# QSFP_0 clock, 322.265625 Mhz, bottom port
+#
+# Use CMAC X0Y0, transceivers X0Y0 thru X0Y3
+#
+# MGTREFCLK0 for Quad 127
+set_property PACKAGE_PIN AE29 [get_ports qsfp0_clk_clk_p]
+set_property PACKAGE_PIN AE30 [get_ports qsfp0_clk_clk_n]
+
+
+# QSFP_1 clock, 322.265625 Mhz,top port
+#
+# Use CMAC X0Y1, transceivers X0Y4 thru X0Y7
+#
+# MGTREFCLK0 for Quad 128
+set_property PACKAGE_PIN AB27 [get_ports qsfp1_clk_clk_p]
+set_property PACKAGE_PIN AB28 [get_ports qsfp1_clk_clk_n]
+
+
+
+# QSFP control and status
+#
+#set_property -dict {PACKAGE_PIN AW13  IOSTANDARD LVCMOS18} [ get_ports qsfp_present_l[0] ]
+#set_property -dict {PACKAGE_PIN AV12  IOSTANDARD LVCMOS18} [ get_ports qsfp_present_l[1] ]
+
+set_property -dict {PACKAGE_PIN AM12  IOSTANDARD LVCMOS18} [ get_ports qsfp_rst_l[0] ]
+set_property -dict {PACKAGE_PIN AR11  IOSTANDARD LVCMOS18} [ get_ports qsfp_rst_l[1] ]
+
+set_property -dict {PACKAGE_PIN AN12  IOSTANDARD LVCMOS18} [ get_ports qsfp_lp[0] ]
+set_property -dict {PACKAGE_PIN AM13  IOSTANDARD LVCMOS18} [ get_ports qsfp_lp[1] ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -31,7 +31,7 @@
 BC_EMU_API_VERSION=1.17.0
 
 # "pcireg" relies on this being set appropriately
-pcireg_device=10ee:903f
+export pcireg_device=10ee:903f
 
 #==============================================================================
 # AXI register definitions
